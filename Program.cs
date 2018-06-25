@@ -158,7 +158,7 @@ public static class Program
 {
     public static void Main(string[] args)
     {
-        var maze = Maze1();
+        var maze = Maze2();
 
         var current_position = new int[] { 1, 1 };
         var current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
@@ -251,6 +251,59 @@ public static class Program
  
         Console.ReadLine();
     }
+
+    public static int[,,] Maze2()
+    {
+        var maze = new int[5, 5, 4];
+        // xy = 00
+        maze[0, 0, 0] = 0;
+        maze[0, 0, 1] = 0;
+        maze[0, 0, 2] = 1;
+        maze[0, 0, 3] = 1;
+        //xy = 01
+        maze[0, 1, 0] = 0;
+        maze[0, 1, 1] = 1;
+        maze[0, 1, 2] = 0;
+        maze[0, 1, 3] = 1;
+        //xy = 02
+        maze[0, 2, 0] = 1;
+        maze[0, 2, 1] = 0;
+        maze[0, 2, 2] = 0;
+        maze[0, 2, 3] = 1;
+        //xy = 10
+        maze[1, 0, 0] = 0;
+        maze[1, 0, 1] = 1;
+        maze[1, 0, 2] = 1;
+        maze[1, 0, 3] = 0;
+        //xy = 11
+        maze[1, 1, 0] = 1;
+        maze[1, 1, 1] = 1;
+        maze[1, 1, 2] = 0;
+        maze[1, 1, 3] = 1;
+        //xy = 12
+        maze[1, 2, 0] = 1;
+        maze[1, 2, 1] = 0;
+        maze[1, 2, 2] = 1;
+        maze[1, 2, 3] = 0;
+        //xy = 20 
+        maze[2, 0, 0] = 0;
+        maze[2, 0, 1] = 1;
+        maze[2, 0, 2] = 1;
+        maze[2, 0, 3] = 1;
+        //xy = 21
+        maze[2, 1, 0] = 0;
+        maze[2, 1, 1] = 1;
+        maze[2, 1, 2] = 0;
+        maze[2, 1, 3] = 1;
+        //xy = 22
+        maze[2, 2, 0] = 1;
+        maze[2, 2, 1] = 1;
+        maze[2, 2, 2] = 0;
+        maze[2, 2, 3] = 0;
+        return maze;
+
+    }
+
 
     public static int[,,]Maze1()
     {
