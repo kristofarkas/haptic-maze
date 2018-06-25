@@ -151,13 +151,64 @@ public class ButtonExample
 */
 
 using System;
+using System.Collections.Generic;
 
 
-public static class Printing
+public static class Program
 {
     public static void Main(string[] args)
     {
-        var maze_array = new int[] { 0, 0, 1, 1 };
+        List<List<List<int>>> maze = new List<List<List<int>>>();
+        maze[0][0] = new List<int> { 1, 0, 1, 0 };
+        Console.WriteLine(maze[0][0]);
+        var current_cell = new int[] { 0, 0, 0, 0 };
+
+        // Create loop for console input
+        ConsoleKeyInfo cki;
+        // Prevent example from ending if CTL+C is pressed.
+        Console.TreatControlCAsInput = true;
+
+        Console.WriteLine("Press any combination of CTL, ALT, and SHIFT, and a console key.");
+        Console.WriteLine("Press the Escape (Esc) key to quit: \n");
+        do
+        {
+            cki = Console.ReadKey();
+            Console.Write(" --- ");
+            if ((cki.Modifiers & ConsoleModifiers.Alt) != 0) Console.Write("ALT+");
+            if ((cki.Modifiers & ConsoleModifiers.Shift) != 0) Console.Write("SHIFT+");
+            if ((cki.Modifiers & ConsoleModifiers.Control) != 0) Console.Write("CTL+");
+
+            // Input maze keys
+
+            //Console.WriteLine(cki.Key.ToString());
+            if ((cki.Key.ToString()) =="RightArrow"  && current_cell[1] ==0)
+            {
+                Console.WriteLine("Yay, you moved right!");
+            }
+
+            if ((cki.Key.ToString()) == "LeftArrow" && current_cell[3] == 0)
+            {
+                Console.WriteLine("a left move was done!");
+            }
+
+            if ((cki.Key.ToString()) == "UpArrow" && current_cell[0] == 0)
+            {
+                Console.WriteLine("onwards and upwards");
+            }
+
+            if ((cki.Key.ToString()) == "DownArrow" && current_cell[2] == 0)
+            {
+                Console.WriteLine("backtracking");
+            }
+
+
+
+
+
+
+        } while (cki.Key != ConsoleKey.Escape);
+    
+    var maze_array = new int[] { 0, 0, 1, 1 };
         PrintMazeCell(maze_array);
         Console.ReadLine();
     }
