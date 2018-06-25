@@ -25,7 +25,7 @@ public class Wall
     //     f = frequency;
     // }
 
-    public Wall(float length, char side, float intensity, float frequency){
+    public Wall(char side, float length=0.08f, float intensity=1.0f, float frequency=200.0f){
         
         switch(side)
         {
@@ -70,8 +70,8 @@ public class Wall
 
     public List<AmplitudeModulationControlPoint> GetPoints(float z){
         AmplitudeModulationControlPoint point1 = new AmplitudeModulationControlPoint(x1, y1, z, i, f);
-        AmplitudeModulationControlPoint point2 = new AmplitudeModulationControlPoint(x1 +   (x1-x2)/3, y1 +   (y1-y2)/3, z, i, f);
-        AmplitudeModulationControlPoint point3 = new AmplitudeModulationControlPoint(x1 + 2*(x1-x2)/3, y1 + 2*(y1-y2)/3, z, i, f);
+        AmplitudeModulationControlPoint point2 = new AmplitudeModulationControlPoint(2*x1/3 + 1*x2/3, 2*y1/3 + 1*y2/3, z, i, f);
+        AmplitudeModulationControlPoint point3 = new AmplitudeModulationControlPoint(1*x1/3 + 2*x2/3, 1*y1/3 + 2*y2/3, z, i, f);
         AmplitudeModulationControlPoint point4 = new AmplitudeModulationControlPoint(x2, y2, z, i, f);
 
         var points = new List<AmplitudeModulationControlPoint> { point1, point2, point3, point4 };
@@ -108,8 +108,8 @@ public class AMExample
 
         // Create walls
 
-        Wall w1 = new Wall(0.06f, 's', 1.0f, 200.0f);
-        Wall w2 = new Wall(0.06f, 'e', 1.0f, 200.0f);
+        Wall w1 = new Wall('s');
+        Wall w2 = new Wall('e');
 
         w1.PrintPoints();
         w2.PrintPoints();
