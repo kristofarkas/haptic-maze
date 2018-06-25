@@ -157,35 +157,40 @@ public static class Printing
 {
     public static void Main(string[] args)
     {
-        var maze_array = new int[] { 0, 0, 0, 1 };
-        PrintMazeCell[maze_array]
+        var maze_array = new int[] { 0, 0, 1, 1 };
+        PrintMazeCell(maze_array);
+        Console.ReadLine();
     }
 
     public static void PrintMazeCell(int[] maze_array)
     {
+        if (maze_array[0]==0)
+        {
+            Console.WriteLine("  ");
+        }
         if (maze_array[0] == 1)
         {
-            Console.WriteLine("----------");
+            Console.WriteLine("   ------------");
         }
         if (maze_array[1] == 1 && maze_array[3] == 1)
         {
-            Console.WriteLine("|          |\n|         |\n|          |\n|          |\n|          |");
-        }
-        if (maze_array[1] == 0 && maze_array[3] == 1)
-        {
-            Console.WriteLine("           |\n          |\n           |\n           |\n           |");
+            Console.WriteLine("   |          |\n   |          |\n   |          |\n   |          |\n   |          |");
         }
         if (maze_array[1] == 1 && maze_array[3] == 0)
         {
-            Console.WriteLine("|           \n|          \n|           \n|           \n|           ");
+            Console.WriteLine("              |\n              |\n              |\n              |\n              |");
         }
-        else
+        if (maze_array[1] == 0 && maze_array[3] == 1)
+        {
+            Console.WriteLine("   |           \n   |          \n   |           \n   |           \n   |           ");
+        }
+        if (maze_array[1] ==0 && maze_array[3]==0)
         {
             Console.WriteLine("            \n           \n            \n            \n            ");
         }
         if (maze_array[2] == 1)
         {
-            Console.WriteLine("----------");
+            Console.WriteLine("   ------------");
         }
     }
 }
