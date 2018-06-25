@@ -164,15 +164,15 @@ public static class Program
         var current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
         Console.WriteLine(string.Join(",", current_position));
         Console.WriteLine(string.Join(",", current_cell));
-
+        PrintMazeCell(current_cell);
 
         // Create loop for console input
         ConsoleKeyInfo cki;
         // Prevent example from ending if CTL+C is pressed.
         Console.TreatControlCAsInput = true;
 
-        Console.WriteLine("Press any combination of CTL, ALT, and SHIFT, and a console key.");
-        Console.WriteLine("Press the Escape (Esc) key to quit: \n");
+        //Console.WriteLine("Press any combination of CTL, ALT, and SHIFT, and a console key.");
+        //Console.WriteLine("Press the Escape (Esc) key to quit: \n");
         do
         {
             cki = Console.ReadKey();
@@ -201,8 +201,13 @@ public static class Program
                 current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
                 Console.Clear();
                 PrintMazeCell(current_cell);
-                
             }
+            if ((cki.Key.ToString()) == "LeftArrow" && current_cell[3] == 1)
+            {
+                Console.Clear();
+                PrintMazeCell(current_cell);
+            }
+
 
 
 
@@ -214,7 +219,11 @@ public static class Program
                 Console.Clear();
                 PrintMazeCell(current_cell);
             }
-
+            if ((cki.Key.ToString()) == "UpArrow" && current_cell[0] == 1)
+            {
+                Console.Clear();
+                PrintMazeCell(current_cell);
+            }
 
 
             if ((cki.Key.ToString()) == "DownArrow" && current_cell[2] == 0)
@@ -225,7 +234,11 @@ public static class Program
                 Console.Clear();
                 PrintMazeCell(current_cell);
             }
-
+            if ((cki.Key.ToString()) == "DownArrow" && current_cell[2] == 0)
+            {
+                Console.Clear();
+                PrintMazeCell(current_cell);
+            }
 
 
 
