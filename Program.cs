@@ -158,10 +158,13 @@ public static class Program
 {
     public static void Main(string[] args)
     {
-        List<List<List<int>>> maze = new List<List<List<int>>>();
-        maze[0][0] = new List<int> { 1, 0, 1, 0 };
-        Console.WriteLine(maze[0][0]);
-        var current_cell = new int[] { 0, 0, 0, 0 };
+        var maze = Maze1();
+
+        var current_position = new int[] { 1, 1 };
+        var current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
+        Console.WriteLine(string.Join(",", current_position));
+        Console.WriteLine(string.Join(",", current_cell));
+
 
         // Create loop for console input
         ConsoleKeyInfo cki;
@@ -173,7 +176,7 @@ public static class Program
         do
         {
             cki = Console.ReadKey();
-            Console.Write(" --- ");
+            //Console.Write(" --- ");
             if ((cki.Modifiers & ConsoleModifiers.Alt) != 0) Console.Write("ALT+");
             if ((cki.Modifiers & ConsoleModifiers.Shift) != 0) Console.Write("SHIFT+");
             if ((cki.Modifiers & ConsoleModifiers.Control) != 0) Console.Write("CTL+");
@@ -183,23 +186,47 @@ public static class Program
             //Console.WriteLine(cki.Key.ToString());
             if ((cki.Key.ToString()) =="RightArrow"  && current_cell[1] ==0)
             {
-                Console.WriteLine("Yay, you moved right!");
+                current_position = new int[] { current_position[0] + 1, current_position[1] };
+                Console.WriteLine(string.Join(",", current_position));
+                current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
+                Console.Clear();
+                PrintMazeCell(current_cell);
             }
+
 
             if ((cki.Key.ToString()) == "LeftArrow" && current_cell[3] == 0)
             {
-                Console.WriteLine("a left move was done!");
+                current_position = new int[] { current_position[0] - 1, current_position[1] };
+                Console.WriteLine(string.Join(",", current_position));
+                current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
+                Console.Clear();
+                PrintMazeCell(current_cell);
+                
             }
+
+
 
             if ((cki.Key.ToString()) == "UpArrow" && current_cell[0] == 0)
             {
-                Console.WriteLine("onwards and upwards");
+                current_position = new int[] { current_position[0], current_position[1] + 1 };
+                Console.WriteLine(string.Join(",", current_position));
+                current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
+                Console.Clear();
+                PrintMazeCell(current_cell);
             }
+
+
 
             if ((cki.Key.ToString()) == "DownArrow" && current_cell[2] == 0)
             {
-                Console.WriteLine("backtracking");
+                current_position = new int[] { current_position[0], current_position[1] - 1 };
+                Console.WriteLine(string.Join(",", current_position));
+                current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
+                Console.Clear();
+                PrintMazeCell(current_cell);
             }
+
+
 
 
 
@@ -208,9 +235,38 @@ public static class Program
 
         } while (cki.Key != ConsoleKey.Escape);
     
-    var maze_array = new int[] { 0, 0, 1, 1 };
-        PrintMazeCell(maze_array);
+ 
         Console.ReadLine();
+    }
+
+    public static int[,,]Maze1()
+    {
+        var maze = new int[2, 2, 4];
+        // Walls for xy = 01
+        maze[0, 1, 0] = 1;
+        maze[0, 1, 1] = 0;
+        maze[0, 1, 2] = 0;
+        maze[0, 1, 3] = 1;
+
+        //Walls for xy = 00
+        maze[0, 0, 0] = 0;
+        maze[0, 0, 1] = 0;
+        maze[0, 0, 2] = 1;
+        maze[0, 0, 3] = 1;
+
+        //walls for xy = 10
+        maze[1, 0, 0] = 1;
+        maze[1, 0, 1] = 1;
+        maze[1, 0, 2] = 1;
+        maze[1, 0, 3] = 0;
+
+        // Walls for xy = 11
+        maze[1, 1, 0] = 1;
+        maze[1, 1, 1] = 1;
+        maze[1, 1, 2] = 1;
+        maze[1, 1, 3] = 0;
+
+        return maze;
     }
 
     public static void PrintMazeCell(int[] maze_array)
