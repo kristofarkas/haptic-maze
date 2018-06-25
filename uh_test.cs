@@ -15,6 +15,7 @@ public class Wall
     float y2;
     float f;
     float i;
+    public char side;
 
     // public Wall(float x1, float y1, float x2, float y2, float intensity, float frequency){
     //     this.x1 = x1;
@@ -26,6 +27,8 @@ public class Wall
     // }
 
     public Wall(char side, float length=0.08f, float intensity=1.0f, float frequency=200.0f){
+        
+        this.side = side;
         
         switch(side)
         {
@@ -81,7 +84,7 @@ public class Wall
 
 }
 
-public class AMExample
+public class GameLoop
 {
     public static void Main(string[] args)
     {
@@ -91,6 +94,8 @@ public class AMExample
         Alignment alignment = emitter.getDeviceInfo().getDefaultAlignment();
 
         Controller controller = new Controller();
+
+        MazeGame game = new MazeGame();
 
         // Wait for leap
         if(!controller.IsConnected)
@@ -104,17 +109,24 @@ public class AMExample
             Console.WriteLine("\n");
         }
 
+        controller.EnableGesture(Gesture.GestureType.TYPE_SWIPE);
+
+
         Console.WriteLine("Leap controller connected.");
 
         // Create walls
 
-        Wall w1 = new Wall('s');
+        Wall w1 = new Wall('w');
         Wall w2 = new Wall('e');
+        Wall w3 = new Wall('n');
+
 
         w1.PrintPoints();
         w2.PrintPoints();
 
-        var walls = new List<Wall> {w1, w2};
+        var walls = new List<Wall> {w1, w2, w3};
+
+        var recently_moved = false;
 
         for (;;)
         {
@@ -132,6 +144,38 @@ public class AMExample
 
                     Vector3 pos = new Vector3(hand.PalmPosition.x, hand.PalmPosition.y, hand.PalmPosition.z);
                     Vector3 palm_pos = alignment.fromTrackingPositionToDevicePosition(pos);
+
+                    float max_center = 0.05f;
+                    float far_center = 0.07f;
+
+                    if (palm_pos.x > far_center && !recently_moved && Math.Abs(palm_pos.y) < max_center) {
+                        Console.WriteLine("Moving right!");
+                        game.MoveTo('e');
+                        recently_moved = true;
+                    }
+
+                    if (palm_pos.x < -far_center && !recently_moved && Math.Abs(palm_pos.y) < max_center) {
+                        Console.WriteLine("Moving left!");
+                        game.MoveTo('w');
+                        recently_moved = true;
+                    }
+
+                    if (palm_pos.y < -far_center && !recently_moved && Math.Abs(palm_pos.x) < max_center) {
+                        Console.WriteLine("Moving down!");
+                        game.MoveTo('s');
+                        recently_moved = true;
+                    }
+
+                    if (palm_pos.y > far_center && !recently_moved && Math.Abs(palm_pos.x) < max_center) {
+                        Console.WriteLine("Moving up!");
+                        game.MoveTo('n');
+                        recently_moved = true;
+                    }
+
+                    if (Math.Abs(palm_pos.x) < max_center && Math.Abs(palm_pos.y) < max_center && recently_moved) {
+                        Console.WriteLine("Reset movement");
+                        recently_moved = false;
+                    }
 
                     z = palm_pos.z;
                 }

@@ -28,7 +28,7 @@ public class ButtonExample
 
     const float PI = (float)Math.PI;
 
-    public static void Main(string[] args)
+    public static void NotMain(string[] args)
     {
         // Create an emitter, which connects to the first connected device
         AmplitudeModulationEmitter emitter = new AmplitudeModulationEmitter();
@@ -140,11 +140,11 @@ public class ButtonExample
             System.Threading.Thread.Sleep(10);
         }
 
-        // Dispose/destroy the emitter
-        emitter.Dispose();
-        emitter = null;
+        // // Dispose/destroy the emitter
+        // emitter.Dispose();
+        // emitter = null;
 
-        controller.Dispose ();
+        // controller.Dispose ();
     }
 }
 
@@ -153,104 +153,92 @@ public class ButtonExample
 using System;
 using System.Collections.Generic;
 
+public class MazeGame
+{   
 
-public static class Program
-{
-    public static void Main(string[] args)
+    int[] current_cell;
+    int[] current_position;
+    int[,,] maze;
+
+    public MazeGame()
     {
-        var maze = Maze2();
-
-        var current_position = new int[] { 1, 1 };
-        var current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
+        maze = Maze1();
+        current_position = new int[] { 1, 1 };
+        current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
         Console.WriteLine(string.Join(",", current_position));
         Console.WriteLine(string.Join(",", current_cell));
-        PrintMazeCell(current_cell);
+        PrintMazeCell();
+    }
 
-        // Create loop for console input
-        ConsoleKeyInfo cki;
-        // Prevent example from ending if CTL+C is pressed.
-        Console.TreatControlCAsInput = true;
+    public int[] MoveTo(char towards){
 
-        //Console.WriteLine("Press any combination of CTL, ALT, and SHIFT, and a console key.");
-        //Console.WriteLine("Press the Escape (Esc) key to quit: \n");
-        do
+        // Input maze keys
+
+        //Console.WriteLine(cki.Key.ToString());
+        if (towards == 'e')
         {
-            cki = Console.ReadKey();
-            //Console.Write(" --- ");
-            if ((cki.Modifiers & ConsoleModifiers.Alt) != 0) Console.Write("ALT+");
-            if ((cki.Modifiers & ConsoleModifiers.Shift) != 0) Console.Write("SHIFT+");
-            if ((cki.Modifiers & ConsoleModifiers.Control) != 0) Console.Write("CTL+");
-
-            // Input maze keys
-
-            //Console.WriteLine(cki.Key.ToString());
-            if ((cki.Key.ToString()) =="RightArrow"  && current_cell[1] ==0)
-            {
+            if (current_cell[1] == 0){
                 current_position = new int[] { current_position[0] + 1, current_position[1] };
                 Console.WriteLine(string.Join(",", current_position));
                 current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
                 Console.Clear();
-                PrintMazeCell(current_cell);
+                PrintMazeCell();
+            } else {
+                System.Diagnostics.Process.Start("say", "Wall!");
+                Console.Clear();
+                PrintMazeCell();
             }
+        }
 
-
-            if ((cki.Key.ToString()) == "LeftArrow" && current_cell[3] == 0)
-            {
+        if (towards == 'w')
+        {
+            if (current_cell[3] == 0){
                 current_position = new int[] { current_position[0] - 1, current_position[1] };
                 Console.WriteLine(string.Join(",", current_position));
                 current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
                 Console.Clear();
-                PrintMazeCell(current_cell);
-            }
-            if ((cki.Key.ToString()) == "LeftArrow" && current_cell[3] == 1)
-            {
+                PrintMazeCell();
+            } else {
+                System.Diagnostics.Process.Start("say", "Wall!");
                 Console.Clear();
-                PrintMazeCell(current_cell);
+                PrintMazeCell();
             }
+        }
 
-
-
-
-            if ((cki.Key.ToString()) == "UpArrow" && current_cell[0] == 0)
-            {
+        if (towards == 'n')
+        {
+            if (current_cell[0] == 0){
                 current_position = new int[] { current_position[0], current_position[1] + 1 };
                 Console.WriteLine(string.Join(",", current_position));
                 current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
                 Console.Clear();
-                PrintMazeCell(current_cell);
-            }
-            if ((cki.Key.ToString()) == "UpArrow" && current_cell[0] == 1)
-            {
+                PrintMazeCell();
+            } else {
+                System.Diagnostics.Process.Start("say", "Wall!");
                 Console.Clear();
-                PrintMazeCell(current_cell);
+                PrintMazeCell();
+
             }
+        } 
 
-
-            if ((cki.Key.ToString()) == "DownArrow" && current_cell[2] == 0)
-            {
+        if (towards == 's')
+        {
+            if (current_cell[2] == 0){
                 current_position = new int[] { current_position[0], current_position[1] - 1 };
                 Console.WriteLine(string.Join(",", current_position));
                 current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
                 Console.Clear();
-                PrintMazeCell(current_cell);
-            }
-            if ((cki.Key.ToString()) == "DownArrow" && current_cell[2] == 0)
-            {
+                PrintMazeCell();
+            } else {
+                System.Diagnostics.Process.Start("say", "Wall!");
                 Console.Clear();
-                PrintMazeCell(current_cell);
+                PrintMazeCell();
             }
+        }
 
-
-
-
-
-
-
-        } while (cki.Key != ConsoleKey.Escape);
-    
- 
-        Console.ReadLine();
+        return this.current_cell;
     }
+
 
     public static int[,,] Maze2()
     {
@@ -335,33 +323,33 @@ public static class Program
         return maze;
     }
 
-    public static void PrintMazeCell(int[] maze_array)
+    public void PrintMazeCell()
     {
-        if (maze_array[0]==0)
+        if (current_cell[0]==0)
         {
             Console.WriteLine("  ");
         }
-        if (maze_array[0] == 1)
+        if (current_cell[0] == 1)
         {
             Console.WriteLine("   ------------");
         }
-        if (maze_array[1] == 1 && maze_array[3] == 1)
+        if (current_cell[1] == 1 && current_cell[3] == 1)
         {
             Console.WriteLine("   |          |\n   |          |\n   |          |\n   |          |\n   |          |");
         }
-        if (maze_array[1] == 1 && maze_array[3] == 0)
+        if (current_cell[1] == 1 && current_cell[3] == 0)
         {
             Console.WriteLine("              |\n              |\n              |\n              |\n              |");
         }
-        if (maze_array[1] == 0 && maze_array[3] == 1)
+        if (current_cell[1] == 0 && current_cell[3] == 1)
         {
             Console.WriteLine("   |           \n   |          \n   |           \n   |           \n   |           ");
         }
-        if (maze_array[1] ==0 && maze_array[3]==0)
+        if (current_cell[1] ==0 && current_cell[3]==0)
         {
             Console.WriteLine("            \n           \n            \n            \n            ");
         }
-        if (maze_array[2] == 1)
+        if (current_cell[2] == 1)
         {
             Console.WriteLine("   ------------");
         }
