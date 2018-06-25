@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using Leap;
 
 
 public struct ButtonWidget
-{
+{C:\Users\Sofia\Dropbox\PhD\Hackathon\haptic-maze\haptic-maze\Program.cs
     public float radius;
     public float angle;
     public ButtonWidget(float r = 0.025f, float a = 0.0f){
@@ -147,3 +147,41 @@ public class ButtonExample
         controller.Dispose ();
     }
 }
+
+*/
+
+using System;
+
+public static void Main(string[] args)
+
+public static class Printing
+    public void PrintMazeCell(datatype maze_array)
+{
+    if (maze_array[0] == 1)
+    {
+        Console.WriteLine("----------");
+    }
+    if (maze_array[1] == 1 && maze_array[3] == 1)
+    {
+        Console.WriteLine("|          |\n|         |\n|          |\n|          |\n|          |");
+    }
+    if (maze_array[1] == 0 && maze_array[3] == 1)
+    {
+        Console.WriteLine("           |\n          |\n           |\n           |\n           |");
+    }
+    if (maze_array[1] == 1 && maze_array[3] == 0)
+    {
+        Console.WriteLine("|           \n|          \n|           \n|           \n|           ");
+    }
+    else
+    {
+        Console.WriteLine("            \n           \n            \n            \n            ");
+    }
+    if (maze_array[2] == 1)
+    {
+        Console.WriteLine("----------");
+    }
+}
+
+
+
