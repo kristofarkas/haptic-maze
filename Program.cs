@@ -152,36 +152,44 @@ public class ButtonExample
 
 using System;
 
-public static void Main(string[] args)
 
 public static class Printing
-    public void PrintMazeCell(datatype maze_array)
 {
-    if (maze_array[0] == 1)
+    public static void Main(string[] args)
     {
-        Console.WriteLine("----------");
+        var maze_array = new int[] { 0, 0, 0, 1 };
+        PrintMazeCell[maze_array]
     }
-    if (maze_array[1] == 1 && maze_array[3] == 1)
+
+    public static void PrintMazeCell(int[] maze_array)
     {
-        Console.WriteLine("|          |\n|         |\n|          |\n|          |\n|          |");
-    }
-    if (maze_array[1] == 0 && maze_array[3] == 1)
-    {
-        Console.WriteLine("           |\n          |\n           |\n           |\n           |");
-    }
-    if (maze_array[1] == 1 && maze_array[3] == 0)
-    {
-        Console.WriteLine("|           \n|          \n|           \n|           \n|           ");
-    }
-    else
-    {
-        Console.WriteLine("            \n           \n            \n            \n            ");
-    }
-    if (maze_array[2] == 1)
-    {
-        Console.WriteLine("----------");
+        if (maze_array[0] == 1)
+        {
+            Console.WriteLine("----------");
+        }
+        if (maze_array[1] == 1 && maze_array[3] == 1)
+        {
+            Console.WriteLine("|          |\n|         |\n|          |\n|          |\n|          |");
+        }
+        if (maze_array[1] == 0 && maze_array[3] == 1)
+        {
+            Console.WriteLine("           |\n          |\n           |\n           |\n           |");
+        }
+        if (maze_array[1] == 1 && maze_array[3] == 0)
+        {
+            Console.WriteLine("|           \n|          \n|           \n|           \n|           ");
+        }
+        else
+        {
+            Console.WriteLine("            \n           \n            \n            \n            ");
+        }
+        if (maze_array[2] == 1)
+        {
+            Console.WriteLine("----------");
+        }
     }
 }
+
 
 
 
