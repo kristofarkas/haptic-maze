@@ -187,7 +187,9 @@ public class MazeGame
         current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
         Console.WriteLine(string.Join(",", current_position));
         Console.WriteLine(string.Join(",", current_cell));
-        PrintMazeCell();
+        // PrintMazeCell();
+
+        PrintMaze();
     }
 
     public int[] MoveTo(char towards){
@@ -389,16 +391,22 @@ public class MazeGame
 
     public void PrintMaze()
     {
-        for (int i = 0; i < size; i++)
+        var size = 3;
+
+        for (int j = size-1; j >= 0; j--)
         {
             // Iterate for north walls
-            for (int j = 0; j < size; j++)
+            for (int i = 0; i < size; i++)
             {
-                if (maze[i,j,0]==1)
+                if (maze[i,j,0] == 1)
                 {
-                    Console.WriteLine("-----");
+                    Console.Write(" ----- ");
+                } else {
+                    Console.Write("       ");
                 }
             }
+
+            Console.WriteLine();
             // Iteratore for east and west walls
             // Do this five times 
             // But only add an X when we are in the middle and the victory conditions is set etc
@@ -406,7 +414,7 @@ public class MazeGame
             for(int k = 0; k < 5; k ++)
             {
 
-                for (int j = 0; j < size; j++)
+                for (int i = 0; i < size; i++)
                 {
                     /*var maze_pos = new int[] {i,j};
                     //Add the key 
@@ -419,23 +427,23 @@ public class MazeGame
                     */
                     if (maze[i, j, 3] == 1)
                     {
-                        Console.WriteLine("|     ");
+                        Console.Write("|     ");
                     }
                     else if (maze[i,j,3]==1)
                     {
-                        Console.WriteLine("      ");
+                        Console.Write("      ");
                     }
 
                 }
                 // Add one more | at the end of it
-                Console.WriteLine("| \n");
+                Console.Write("| \n");
             }
             // Add the south walls
-            for (int j = 0; j < size; j++)
+            for (int i = 0; i < size; i++)
             {
-                if (maze[ij, j, 2] == 1)
+                if (maze[i, j, 2] == 1)
                 {
-                        Console.WriteLine("-----");
+                    Console.Write(" ----- ");
                 }
             }
         }
