@@ -189,6 +189,8 @@ public class MazeGame
         Console.WriteLine(string.Join(",", current_cell));
         // PrintMazeCell();
 
+        System.Diagnostics.Process.Start("say", "Start game.");
+
         PrintMaze();
     }
 
@@ -202,8 +204,6 @@ public class MazeGame
             if (current_cell[1] == 0){
                 current_position = new int[] { current_position[0] + 1, current_position[1] };
                 current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
-                Console.Clear();
-                PrintMazeCell();
                 Console.WriteLine(string.Join(",", current_position));
 
                 if (current_position.SequenceEqual(end_cell))
@@ -215,8 +215,6 @@ public class MazeGame
 
             } else {
                 System.Diagnostics.Process.Start("say", "Wall!");
-                Console.Clear();
-                PrintMazeCell();
             }
         }
 
@@ -225,8 +223,6 @@ public class MazeGame
             if (current_cell[3] == 0){
                 current_position = new int[] { current_position[0] - 1, current_position[1] };
                 current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
-                Console.Clear();
-                PrintMazeCell();
                 Console.WriteLine(string.Join(",", current_position));
                 if (current_position.SequenceEqual(end_cell))
                 {
@@ -236,8 +232,6 @@ public class MazeGame
                 }
             } else {
                 System.Diagnostics.Process.Start("say", "Wall!");
-                Console.Clear();
-                PrintMazeCell();
             }
         }
 
@@ -246,8 +240,6 @@ public class MazeGame
             if (current_cell[0] == 0){
                 current_position = new int[] { current_position[0], current_position[1] + 1 };
                 current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
-                Console.Clear();
-                PrintMazeCell();
                 Console.WriteLine(string.Join(",", current_position));
                 if (current_position.SequenceEqual(end_cell))
                 {
@@ -258,7 +250,7 @@ public class MazeGame
             } else {
                 System.Diagnostics.Process.Start("say", "Wall!");
                 Console.Clear();
-                PrintMazeCell();
+                PrintMaze();
 
             }
         } 
@@ -268,8 +260,6 @@ public class MazeGame
             if (current_cell[2] == 0){
                 current_position = new int[] { current_position[0], current_position[1] - 1 };
                 current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
-                Console.Clear();
-                PrintMazeCell();
 
                 Console.WriteLine(string.Join(",", current_position));
 
@@ -282,16 +272,16 @@ public class MazeGame
 
             } else {
                 System.Diagnostics.Process.Start("say", "Wall!");
-                Console.Clear();
-                PrintMazeCell();
             }
         }
+
+        PrintMaze();
 
         return this.current_cell;
     }
 
     public void PickUpKey() {
-        if (maze[current_position[0], current_position[1], 4] == 1){
+        if (maze[current_position[0], current_position[1], 4] == 1 && !has_key){
             System.Diagnostics.Process.Start("say", "You picked up a key!");
             has_key = true;
         }
@@ -391,22 +381,27 @@ public class MazeGame
 
     public void PrintMaze()
     {
+        Console.Clear();
         var size = 3;
 
         for (int j = size-1; j >= 0; j--)
         {
             // Iterate for north walls
-            for (int i = 0; i < size; i++)
-            {
-                if (maze[i,j,0] == 1)
+            if (j == 2){
+                for (int i = 0; i < size; i++)
                 {
-                    Console.Write(" ----- ");
-                } else {
-                    Console.Write("       ");
+                    if (maze[i,j,0] == 1)
+                    {
+                        Console.ForegroundColor = current_position.SequenceEqual(new int[] {i, j}) ? ConsoleColor.Red : ConsoleColor.White;
+                        Console.Write(" ----------");
+                    } else {
+                        Console.Write("           ");
+                    }
                 }
+
+                Console.WriteLine();
             }
 
-            Console.WriteLine();
             // Iteratore for east and west walls
             // Do this five times 
             // But only add an X when we are in the middle and the victory conditions is set etc
@@ -427,15 +422,17 @@ public class MazeGame
                     */
                     if (maze[i, j, 3] == 1)
                     {
-                        Console.Write("|     ");
+                        Console.ForegroundColor = (current_position.SequenceEqual(new int[] {i, j}) || current_position.SequenceEqual(new int[] {i-1, j})) ? ConsoleColor.Red : ConsoleColor.White;
+                        Console.Write("|          ");
                     }
-                    else if (maze[i,j,3]==1)
+                    else if (maze[i,j,3]==0)
                     {
-                        Console.Write("      ");
+                        Console.Write("           ");
                     }
 
                 }
                 // Add one more | at the end of it
+                Console.ForegroundColor = current_position.SequenceEqual(new int[] {size-1, j}) ? ConsoleColor.Red : ConsoleColor.White;
                 Console.Write("| \n");
             }
             // Add the south walls
@@ -443,9 +440,14 @@ public class MazeGame
             {
                 if (maze[i, j, 2] == 1)
                 {
-                    Console.Write(" ----- ");
+                    Console.ForegroundColor = (current_position.SequenceEqual(new int[] {i, j}) || current_position.SequenceEqual(new int[] {i, j-1})) ? ConsoleColor.Red : ConsoleColor.White;
+                    Console.Write(" ----------");
+                } else {
+                    Console.Write("           ");
                 }
             }
+
+            Console.WriteLine();
         }
     }
     
