@@ -278,6 +278,58 @@ public class MazeGame
     }
 
 
+    public static int[,,] RandomMaze(int size)
+    {
+        // Generate a maze with all edges filled in
+        // Add one more index at the end. This signifies the set for the algorithm
+        var Kmaze = new int[size, size, 4, 1];
+        var k = new int 0;
+        for (int i = 0; i < size;i++)
+        {
+            for (int j = 0; j < size; j++)
+            {
+                //Add walls 
+                //Iterate k to assign number
+                Kmaze[i, j, 0, k] = 1;
+                k++;
+                Kmaze[i, j, 1, k] = 1;
+                k++;
+                Kmaze[i, j, 2, k] = 1;
+                k++;
+                Kmaze[i, j, 3, k] = 1;
+                k++;
+            }
+        }
+        //Now implement the algorithm
+        // Check two random edges. 
+        // If they have different last index, remove the wall
+        // And set the index to the same
+        Random rnd = new Random();
+        // Pick a random number between 1 and size*size. 
+        var maze_done = new int 0;
+        var cell1 = new int[size, size, 4, 1];
+        var cell2 = new int[size, size, 4, 1]; 
+        /*while (maze_done ==0)
+        {
+            int randx = rnd.Next(1, size);
+            int randy = rnd.Next(1, size);
+            
+            cell1 = maze_done[randx, randy]
+
+            // Then pick a random direction; 1-4
+            int rand_dir = rnd.Next(1, 4);
+            // assign cell2 to be the adjacent one in that direction. 
+
+
+            if (Kmaze[randx, randy,rand_dir,0])
+        }
+        */
+
+
+
+        
+    }
+
     public static int[,,] Maze2()
     {
         var maze = new int[5, 5, 4];
