@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "maze.py", line 317, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 281, in play
+    console.display(str(self.maze))
+AttributeError: module 'console' has no attribute 'display'
