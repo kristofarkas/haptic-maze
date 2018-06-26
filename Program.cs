@@ -151,6 +151,7 @@ public class ButtonExample
 */
 
 using System;
+using System.Linq;
 
 public class MazeGame
 {   
@@ -164,7 +165,7 @@ public class MazeGame
 
     public MazeGame()
     {
-        var mazeno = 1;
+        var mazeno = 2;
 
         if (mazeno == 1)
         {
@@ -172,7 +173,7 @@ public class MazeGame
             start_cell = new int[]{1,0};
             end_cell = new int[]{1,1};
         }
-        if (mazeno ==2)
+        if (mazeno == 2)
         {
             maze = Maze2();
             start_cell = new int[] { 2, 0 };
@@ -195,14 +196,16 @@ public class MazeGame
         {
             if (current_cell[1] == 0){
                 current_position = new int[] { current_position[0] + 1, current_position[1] };
-                Console.WriteLine(string.Join(",", current_position));
                 current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
                 Console.Clear();
                 PrintMazeCell();
+                Console.WriteLine(string.Join(",", current_position));
 
-                if (current_cell == end_cell)
+                if (current_position.SequenceEqual(end_cell))
                 {
-                    Console.WriteLine("You won!!!");
+                    System.Diagnostics.Process.Start("say", "You won!");
+                } else {
+                    System.Diagnostics.Process.Start("say", "Step");
                 }
 
             } else {
@@ -216,14 +219,15 @@ public class MazeGame
         {
             if (current_cell[3] == 0){
                 current_position = new int[] { current_position[0] - 1, current_position[1] };
-                Console.WriteLine(string.Join(",", current_position));
                 current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
                 Console.Clear();
                 PrintMazeCell();
-
-                if (current_cell == end_cell)
+                Console.WriteLine(string.Join(",", current_position));
+                if (current_position.SequenceEqual(end_cell))
                 {
-                    Console.WriteLine("You won!!!");
+                    System.Diagnostics.Process.Start("say", "You won!");
+                } else {
+                    System.Diagnostics.Process.Start("say", "Step");
                 }
             } else {
                 System.Diagnostics.Process.Start("say", "Wall!");
@@ -236,14 +240,15 @@ public class MazeGame
         {
             if (current_cell[0] == 0){
                 current_position = new int[] { current_position[0], current_position[1] + 1 };
-                Console.WriteLine(string.Join(",", current_position));
                 current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
                 Console.Clear();
                 PrintMazeCell();
-
-                if (current_cell == end_cell)
+                Console.WriteLine(string.Join(",", current_position));
+                if (current_position.SequenceEqual(end_cell))
                 {
-                    Console.WriteLine("You won!!!");
+                    System.Diagnostics.Process.Start("say", "You won!");
+                } else {
+                    System.Diagnostics.Process.Start("say", "Step");
                 }
             } else {
                 System.Diagnostics.Process.Start("say", "Wall!");
@@ -257,14 +262,17 @@ public class MazeGame
         {
             if (current_cell[2] == 0){
                 current_position = new int[] { current_position[0], current_position[1] - 1 };
-                Console.WriteLine(string.Join(",", current_position));
                 current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
                 Console.Clear();
                 PrintMazeCell();
 
-                if (current_cell == end_cell)
+                Console.WriteLine(string.Join(",", current_position));
+
+                if (current_position.SequenceEqual(end_cell))
                 {
-                    Console.WriteLine("You won!!!");
+                    System.Diagnostics.Process.Start("say", "You won!");
+                } else {
+                    System.Diagnostics.Process.Start("say", "Step");
                 }
 
             } else {
