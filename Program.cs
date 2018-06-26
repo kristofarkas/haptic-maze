@@ -307,20 +307,15 @@ public class MazeGame
         maze[2, 0, 2] = 1;
         maze[2, 0, 3] = 1;
         //xy = 30
-        maze[3, 0, 0] = 0;
+        maze[3, 0, 0] = 1;
         maze[3, 0, 1] = 0;
         maze[3, 0, 2] = 1;
-        maze[3, 0, 3] = 1;
+        maze[3, 0, 3] = 0;
         //xy = 40
-        maze[4, 0, 0] = 1;
-        maze[4, 0, 1] = 0;
+        maze[4, 0, 0] = 0;
+        maze[4, 0, 1] = 1;
         maze[4, 0, 2] = 1;
         maze[4, 0, 3] = 0;
-        //xy = 50
-        maze[5, 0, 0] = 0;
-        maze[5, 0, 1] = 1;
-        maze[5, 0, 2] = 1;
-        maze[5, 0, 3] = 0;
 
         //Second row
         //xy = 01
@@ -368,8 +363,8 @@ public class MazeGame
         //xy = 32
         maze[3, 2, 0] = 0;
         maze[3, 2, 1] = 1;
-        maze[3, 2, 2] = 0;
-        maze[3, 2, 3] = 1;
+        maze[3, 2, 2] = 1;
+        maze[3, 2, 3] = 0;
         //xy = 42
         maze[4, 2, 0] = 1;
         maze[4, 2, 1] = 1;
