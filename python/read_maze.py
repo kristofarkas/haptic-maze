@@ -29,3 +29,8 @@ for i in range(1, len(maze)-1,2):
 
 for i in enumerate(maze_list):
     print(i)
+
+thefile = open('maze_list_file.txt', 'w')
+
+for item in maze_list:
+    thefile.write(item)
