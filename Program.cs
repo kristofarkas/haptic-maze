@@ -296,7 +296,152 @@ public class MazeGame
             has_key = true;
         }
     }
-    
+
+    public static int[,,] Maze3()
+    {
+        var maze = new int[5, 5, 4]
+        //FIrst row from bottum 
+        //xy = 00
+        maze[0, 0, 0] = 0;
+        maze[0, 0, 1] = 0;
+        maze[0, 0, 2] = 1;
+        maze[0, 0, 3] = 1;
+        //xy = 10 
+        maze[1, 0, 0] = 0;
+        maze[1, 0, 1] = 1;
+        maze[1, 0, 2] = 1;
+        maze[1, 0, 3] = 0;
+        //xy = 20 
+        maze[2, 0, 0] = 0;
+        maze[2, 0, 1] = 0;
+        maze[2, 0, 2] = 1;
+        maze[2, 0, 3] = 1;
+        //xy = 30
+        maze[3, 0, 0] = 0;
+        maze[3, 0, 1] = 0;
+        maze[3, 0, 2] = 1;
+        maze[3, 0, 3] = 1;
+        //xy = 40
+        maze[4, 0, 0] = 1;
+        maze[4, 0, 1] = 0;
+        maze[4, 0, 2] = 1;
+        maze[4, 0, 3] = 0;
+        //xy = 50
+        maze[5, 0, 0] = 0;
+        maze[5, 0, 1] = 1;
+        maze[5, 0, 2] = 1;
+        maze[5, 0, 3] = 0;
+
+        //Second row
+        //xy = 01
+        maze[0, 1, 0] = 0;
+        maze[0, 1, 1] = 1;
+        maze[0, 1, 2] = 0;
+        maze[0, 1, 3] = 1;
+        //xy = 11
+        maze[1, 1, 0] = 1;
+        maze[1, 1, 1] = 0;
+        maze[1, 1, 2] = 0;
+        maze[1, 1, 3] = 1;
+        //xy = 21
+        maze[2, 1, 0] = 1;
+        maze[2, 1, 1] = 1;
+        maze[2, 1, 2] = 0;
+        maze[2, 1, 3] = 0;
+        //xy= 31
+        maze[3, 1, 0] = 1;
+        maze[3, 1, 1] = 0;
+        maze[3, 1, 2] = 1;
+        maze[3, 1, 3] = 1;
+        //xy = 41
+        maze[4, 1, 0] = 0;
+        maze[4, 1, 1] = 1;
+        maze[4, 1, 2] = 0;
+        maze[4, 1, 3] = 0;
+
+        //Third row
+        //xy = 02
+        maze[0, 2, 0] = 0;
+        maze[0, 2, 1] = 0;
+        maze[0, 2, 2] = 0;
+        maze[0, 2, 3] = 1;
+        //xy = 12
+        maze[1, 2, 0] = 1;
+        maze[1, 2, 1] = 0;
+        maze[1, 2, 2] = 1;
+        maze[1, 2, 3] = 0;
+        //xy = 22
+        maze[2, 2, 0] = 1;
+        maze[2, 2, 1] = 0;
+        maze[2, 2, 2] = 1;
+        maze[2, 2, 3] = 0;
+        //xy = 32
+        maze[3, 2, 0] = 0;
+        maze[3, 2, 1] = 1;
+        maze[3, 2, 2] = 0;
+        maze[3, 2, 3] = 1;
+        //xy = 42
+        maze[4, 2, 0] = 1;
+        maze[4, 2, 1] = 1;
+        maze[4, 2, 2] = 0;
+        maze[4, 2, 3] = 1;
+
+        //4th row
+        //xy = 03
+        maze[0, 3, 0] = 1;
+        maze[0, 3, 1] = 0;
+        maze[0, 3, 2] = 0;
+        maze[0, 3, 3] = 1;
+        //xy = 13
+        maze[1, 3, 0] = 1;
+        maze[1, 3, 1] = 0;
+        maze[1, 3, 2] = 1;
+        maze[1, 3, 3] = 0;
+        //xy = 23
+        maze[2, 3, 0] = 0;
+        maze[2, 3, 1] = 1;
+        maze[2, 3, 2] = 1;
+        maze[2, 3, 3] = 0;
+        //xy = 33
+        maze[3, 3, 0] = 1;
+        maze[3, 3, 1] = 0;
+        maze[3, 3, 2] = 0;
+        maze[3, 3, 3] = 1;
+        //xy = 43
+        maze[4, 3, 0] = 1;
+        maze[4, 3, 1] = 1;
+        maze[4, 3, 2] = 1;
+        maze[4, 3, 3] = 0;
+
+        //upper row
+        //xy = 04
+        maze[0, 4, 0] = 1;
+        maze[0, 4, 1] = 0;
+        maze[0, 4, 2] = 1;
+        maze[0, 4, 3] = 1;
+        //xy = 14
+        maze[1, 4, 0] = 1;
+        maze[1, 4, 1] = 0;
+        maze[1, 4, 2] = 1;
+        maze[1, 4, 3] = 0;
+        //xy = 24
+        maze[2, 4, 0] = 1;
+        maze[2, 4, 1] = 0;
+        maze[2, 4, 2] = 0;
+        maze[2, 4, 3] = 0;
+        //xy = 34
+        maze[3, 4, 0] = 1;
+        maze[3, 4, 1] = 0;
+        maze[3, 4, 2] = 1;
+        maze[3, 4, 3] = 0;
+        //xy = 44
+        maze[4, 4, 0] = 1;
+        maze[3, 4, 1] = 1;
+        maze[3, 4, 1] = 1;
+        maze[3, 4, 0] = 0;
+
+    }
+
     public static int[,,] Maze2()
     {
         var maze = new int[5, 5, 5];
@@ -357,6 +502,7 @@ public class MazeGame
         return maze;
 
     }
+
 
 
     public static int[,,]Maze1()
@@ -429,7 +575,7 @@ public class MazeGame
                     {
                         Console.Write("|     ");
                     }
-                    else if (maze[i,j,3]==1)
+                    else if (maze[i,j,3]==0)
                     {
                         Console.Write("      ");
                     }
@@ -480,6 +626,27 @@ public class MazeGame
         {
             Console.WriteLine("   ------------");
         }
+    }
+    public void ReadFile()
+    {
+        var maze = new int[5, 5, 5];
+        for (int x = 0; x < 5; x++)
+        {
+            for (int y = 4; y=0; y--)
+            {
+                //NOrth wall 
+                maze[x,y,0] = 
+                //East wall
+                maze[x,y,1] = 
+                // South wall
+                maze[x,y,2] = 
+                // West wall
+                maze[x,y,3] = 
+            }
+        }
+        string [] lines = File.ReadAllLines("Maze5x5_1.csv");
+        int[] maze_data = s1.Split(';').Select(n => Convert.ToInt32(n)).ToArray();
+
     }
 }
 
