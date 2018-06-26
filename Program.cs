@@ -162,8 +162,25 @@ public class MazeGame
 
     public MazeGame()
     {
-        maze = Maze1();
-        current_position = new int[] { 1, 1 };
+        mazeno = new int 1;
+        is_winner = new bool 0;
+        start_tile = new int[]{ 0,0};
+        end_tile = new int[]{ 0,0};
+
+        if (mazeno == 1)
+        {
+            maze = Maze1();
+            start_cell = new int[]{1,0};
+            end_cell = new int[]{1,1};
+        }
+        if (mazeno ==2)
+        {
+            maze = Maze2();
+            start_cell = new int[] { 2, 0 };
+            end_cell = new int[] { 1, 1 };
+        }
+        current_position = start_cell;
+
         current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
         Console.WriteLine(string.Join(",", current_position));
         Console.WriteLine(string.Join(",", current_cell));
@@ -183,6 +200,12 @@ public class MazeGame
                 current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
                 Console.Clear();
                 PrintMazeCell();
+
+                if (current_cell == end_cell)
+                {
+                    Console.WriteLine("You won!!!");
+                }
+
             } else {
                 System.Diagnostics.Process.Start("say", "Wall!");
                 Console.Clear();
@@ -198,6 +221,11 @@ public class MazeGame
                 current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
                 Console.Clear();
                 PrintMazeCell();
+
+                if (current_cell == end_cell)
+                {
+                    Console.WriteLine("You won!!!");
+                }
             } else {
                 System.Diagnostics.Process.Start("say", "Wall!");
                 Console.Clear();
@@ -213,6 +241,11 @@ public class MazeGame
                 current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
                 Console.Clear();
                 PrintMazeCell();
+
+                if (current_cell == end_cell)
+                {
+                    Console.WriteLine("You won!!!");
+                }
             } else {
                 System.Diagnostics.Process.Start("say", "Wall!");
                 Console.Clear();
@@ -229,6 +262,12 @@ public class MazeGame
                 current_cell = new int[] { maze[current_position[0], current_position[1], 0], maze[current_position[0], current_position[1], 1], maze[current_position[0], current_position[1], 2], maze[current_position[0], current_position[1], 3] };
                 Console.Clear();
                 PrintMazeCell();
+
+                if (current_cell == end_cell)
+                {
+                    Console.WriteLine("You won!!!");
+                }
+
             } else {
                 System.Diagnostics.Process.Start("say", "Wall!");
                 Console.Clear();
