@@ -26,7 +26,7 @@ public class Wall
     //     f = frequency;
     // }
 
-    public Wall(char side, float length=0.09f, float intensity=1.0f, float frequency=200.0f){
+    public Wall(char side, float length=0.09f, float intensity=1.0f, float frequency=250.0f){
         
         this.side = side;
         
@@ -55,6 +55,12 @@ public class Wall
                 y1 = length/2;
                 x2 = -length/2;
                 y2 = -length/2;
+                break;
+            case 'k':
+                x1 = -0.01f;
+                y1 = -0.01f;
+                x2 = 0.01f;
+                y2 = 0.01f;
                 break;
             default:
                 Console.WriteLine("WRONG SIDE!");
@@ -102,6 +108,7 @@ public class Wall
             case 1: return 'e'; 
             case 2: return 's'; 
             case 3: return 'w';
+            case 4: return 'k';
             default: Console.WriteLine("BROKEN!"); return 'n';
         }
     }
@@ -132,16 +139,11 @@ public class GameLoop
             Console.WriteLine("\n");
         }
 
+        controller.EnableGesture(Gesture.GestureType.TYPE_KEY_TAP);
 
         Console.WriteLine("Leap controller connected.");
 
-        // Create walls
-
-        Wall w1 = new Wall('w');
-        Wall w2 = new Wall('e');
-        Wall w3 = new Wall('n');
-
-        var walls = new List<Wall> {w1, w2, w3};
+        var walls = Wall.GenWalls(game.current_cell);
 
         var recently_moved = false;
 
@@ -158,13 +160,22 @@ public class GameLoop
                 {
                     Hand hand = hands[0];
 
+                    for (int g = 0; g < frame.Gestures().Count; g++) {
+                        if (frame.Gestures () [g].State == Gesture.GestureState.STATE_STOP){
+                            game.PickUpKey();
+                        }
+                    }
+
+
                     Vector3 pos = new Vector3(hand.PalmPosition.x, hand.PalmPosition.y, hand.PalmPosition.z);
+                    Vector3 normal = new Vector3(hand.PalmNormal.x, hand.PalmNormal.y, hand.PalmNormal.z);
+
                     Vector3 palm_pos = alignment.fromTrackingPositionToDevicePosition(pos);
+                    Vector3 palm_normal = alignment.fromTrackingDirectionToDeviceDirection(normal).normalize();
 
-                    float max_center = 0.05f;
-                    float far_center = 0.09f;
+                    float far_center = 0.7f;
 
-                    if (palm_pos.x > far_center && !recently_moved && Math.Abs(palm_pos.y) < max_center) {
+                    if (palm_normal.x > far_center && !recently_moved) {
                         Console.WriteLine("Moving right!");
                         var cell = game.MoveTo('e');
                         walls = Wall.GenWalls(cell);
@@ -172,7 +183,7 @@ public class GameLoop
                         break;
                     }
 
-                    if (palm_pos.x < -far_center && !recently_moved && Math.Abs(palm_pos.y) < max_center) {
+                    if (palm_normal.x < -far_center && !recently_moved) {
                         Console.WriteLine("Moving left!");
                         var cell = game.MoveTo('w');
                         walls = Wall.GenWalls(cell);
@@ -181,7 +192,7 @@ public class GameLoop
 
                     }
 
-                    if (palm_pos.y < -far_center && !recently_moved && Math.Abs(palm_pos.x) < max_center) {
+                    if (palm_normal.y < -far_center && !recently_moved) {
                         Console.WriteLine("Moving down!");
                         var cell = game.MoveTo('s');
                         walls = Wall.GenWalls(cell);
@@ -189,7 +200,7 @@ public class GameLoop
                         break;
                     }
 
-                    if (palm_pos.y > far_center && !recently_moved && Math.Abs(palm_pos.x) < max_center) {
+                    if (palm_normal.y > far_center && !recently_moved) {
                         Console.WriteLine("Moving up!");
                         var cell = game.MoveTo('n');
                         walls = Wall.GenWalls(cell);
@@ -197,7 +208,7 @@ public class GameLoop
                         break;
                     }
 
-                    if (Math.Abs(palm_pos.x) < max_center && Math.Abs(palm_pos.y) < max_center && recently_moved) {
+                    if (palm_normal.z < -0.8f && recently_moved) {
                         Console.WriteLine("Reset movement");
                         recently_moved = false;
                     }

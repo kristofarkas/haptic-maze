@@ -156,16 +156,19 @@ using System.Linq;
 public class MazeGame
 {   
 
-    int[] current_cell;
+    public int[] current_cell;
     int[] current_position;
     int[,,] maze;
     int[] start_cell;
-    int[] end_cell ;
+    int[] end_cell;
+    bool has_key;
 
 
     public MazeGame()
     {
         var mazeno = 2;
+
+        has_key = false;
 
         if (mazeno == 1)
         {
@@ -205,7 +208,7 @@ public class MazeGame
                 {
                     System.Diagnostics.Process.Start("say", "You won!");
                 } else {
-                    System.Diagnostics.Process.Start("say", "Step");
+                    System.Diagnostics.Process.Start("say", "Step right");
                 }
 
             } else {
@@ -227,7 +230,7 @@ public class MazeGame
                 {
                     System.Diagnostics.Process.Start("say", "You won!");
                 } else {
-                    System.Diagnostics.Process.Start("say", "Step");
+                    System.Diagnostics.Process.Start("say", "Step left");
                 }
             } else {
                 System.Diagnostics.Process.Start("say", "Wall!");
@@ -248,7 +251,7 @@ public class MazeGame
                 {
                     System.Diagnostics.Process.Start("say", "You won!");
                 } else {
-                    System.Diagnostics.Process.Start("say", "Step");
+                    System.Diagnostics.Process.Start("say", "Step forwards");
                 }
             } else {
                 System.Diagnostics.Process.Start("say", "Wall!");
@@ -272,7 +275,7 @@ public class MazeGame
                 {
                     System.Diagnostics.Process.Start("say", "You won!");
                 } else {
-                    System.Diagnostics.Process.Start("say", "Step");
+                    System.Diagnostics.Process.Start("say", "Step backwards");
                 }
 
             } else {
@@ -285,107 +288,122 @@ public class MazeGame
         return this.current_cell;
     }
 
-
-    public static int[,,] RandomMaze(int size)
-    {
-        // Generate a maze with all edges filled in
-        // Add one more index at the end. This signifies the set for the algorithm
-        var Kmaze = new int[size, size, 4, 1];
-        var k = new int 0;
-        for (int i = 0; i < size;i++)
-        {
-            for (int j = 0; j < size; j++)
-            {
-                //Add walls 
-                //Iterate k to assign number
-                Kmaze[i, j, 0, k] = 1;
-                k++;
-                Kmaze[i, j, 1, k] = 1;
-                k++;
-                Kmaze[i, j, 2, k] = 1;
-                k++;
-                Kmaze[i, j, 3, k] = 1;
-                k++;
-            }
+    public void PickUpKey() {
+        if (maze[current_position[0], current_position[1], 4] == 1){
+            System.Diagnostics.Process.Start("say", "You picked up a key!");
+            has_key = true;
         }
-        //Now implement the algorithm
-        // Check two random edges. 
-        // If they have different last index, remove the wall
-        // And set the index to the same
-        Random rnd = new Random();
-        // Pick a random number between 1 and size*size. 
-        var maze_done = new int 0;
-        var cell1 = new int[size, size, 4, 1];
-        var cell2 = new int[size, size, 4, 1]; 
-        /*while (maze_done ==0)
-        {
-            int randx = rnd.Next(1, size);
-            int randy = rnd.Next(1, size);
+    }
+
+    // public static int[,,] RandomMaze(int size)
+    // {
+    //     // Generate a maze with all edges filled in
+    //     // Add one more index at the end. This signifies the set for the algorithm
+    //     var Kmaze = new int[size, size, 4, 1];
+    //     var k = new int 0;
+    //     for (int i = 0; i < size;i++)
+    //     {
+    //         for (int j = 0; j < size; j++)
+    //         {
+    //             //Add walls 
+    //             //Iterate k to assign number
+    //             Kmaze[i, j, 0, k] = 1;
+    //             k++;
+    //             Kmaze[i, j, 1, k] = 1;
+    //             k++;
+    //             Kmaze[i, j, 2, k] = 1;
+    //             k++;
+    //             Kmaze[i, j, 3, k] = 1;
+    //             k++;
+    //         }
+    //     }
+    //     //Now implement the algorithm
+    //     // Check two random edges. 
+    //     // If they have different last index, remove the wall
+    //     // And set the index to the same
+    //     Random rnd = new Random();
+    //     // Pick a random number between 1 and size*size. 
+    //     var maze_done = new int 0;
+    //     var cell1 = new int[size, size, 4, 1];
+    //     var cell2 = new int[size, size, 4, 1]; 
+    //     /*while (maze_done ==0)
+    //     {
+    //         int randx = rnd.Next(1, size);
+    //         int randy = rnd.Next(1, size);
             
-            cell1 = maze_done[randx, randy]
+    //         cell1 = maze_done[randx, randy]
 
-            // Then pick a random direction; 1-4
-            int rand_dir = rnd.Next(1, 4);
-            // assign cell2 to be the adjacent one in that direction. 
+    //         // Then pick a random direction; 1-4
+    //         int rand_dir = rnd.Next(1, 4);
+    //         // assign cell2 to be the adjacent one in that direction. 
 
 
-            if (Kmaze[randx, randy,rand_dir,0])
-        }
-        */
+    //         if (Kmaze[randx, randy,rand_dir,0])
+    //     }
+    //     */
 
 
 
         
-    }
+    // }
 
     public static int[,,] Maze2()
     {
-        var maze = new int[5, 5, 4];
+        var maze = new int[5, 5, 5];
         // xy = 00
         maze[0, 0, 0] = 0;
         maze[0, 0, 1] = 0;
         maze[0, 0, 2] = 1;
         maze[0, 0, 3] = 1;
+        maze[0, 0, 4] = 0;
         //xy = 01
         maze[0, 1, 0] = 0;
         maze[0, 1, 1] = 1;
         maze[0, 1, 2] = 0;
         maze[0, 1, 3] = 1;
+        maze[0, 1, 4] = 1;
         //xy = 02
         maze[0, 2, 0] = 1;
         maze[0, 2, 1] = 0;
         maze[0, 2, 2] = 0;
         maze[0, 2, 3] = 1;
+        maze[0, 2, 4] = 0;
         //xy = 10
         maze[1, 0, 0] = 0;
         maze[1, 0, 1] = 1;
         maze[1, 0, 2] = 1;
         maze[1, 0, 3] = 0;
+        maze[1, 0, 4] = 0;
         //xy = 11
         maze[1, 1, 0] = 1;
         maze[1, 1, 1] = 1;
         maze[1, 1, 2] = 0;
         maze[1, 1, 3] = 1;
+        maze[1, 1, 4] = 0;
         //xy = 12
         maze[1, 2, 0] = 1;
         maze[1, 2, 1] = 0;
         maze[1, 2, 2] = 1;
         maze[1, 2, 3] = 0;
+        maze[1, 2, 4] = 0;
         //xy = 20 
         maze[2, 0, 0] = 0;
         maze[2, 0, 1] = 1;
         maze[2, 0, 2] = 1;
         maze[2, 0, 3] = 1;
+        maze[2, 0, 4] = 0;
         //xy = 21
         maze[2, 1, 0] = 0;
         maze[2, 1, 1] = 1;
         maze[2, 1, 2] = 0;
         maze[2, 1, 3] = 1;
+        maze[2, 1, 4] = 0;
         //xy = 22
         maze[2, 2, 0] = 1;
         maze[2, 2, 1] = 1;
         maze[2, 2, 2] = 0;
         maze[2, 2, 3] = 0;
+        maze[2, 2, 4] = 0;
         return maze;
 
     }
