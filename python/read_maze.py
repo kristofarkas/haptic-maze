@@ -16,21 +16,23 @@ for i in range(1, len(maze)-1,2):
 
         # Check northern wall
         if maze[i-1][j] ==' O':
-            maze_list.append([i,j,0,1])
+            maze_list.append([i,j,0])
         # Check eastern wall
         if maze[i][j+1]==' O':
-            maze_list.append([i,j,1,1])
+            maze_list.append([i,j,1])
         #check western wall
         if maze[i][j-1]==' O':
-            maze_list.append([i,j,3,1])
+            maze_list.append([i,j,3])
         #check southern wall
         if maze[i+1][j]==' O':
-            maze_list.append([i,j,2,1])
+            maze_list.append([i,j,2])
 
-for i in enumerate(maze_list):
-    print(i)
+print(maze_list)
 
-thefile = open('maze_list_file.txt', 'w')
+# thefile = open('maze_list_file.txt', 'w')
+# 
+# for item in maze_list:
+#     thefile.write(item)
 
-for item in maze_list:
-    thefile.write(item)
+with open("maze_list_text.txt", "w") as file:
+    file.write(str(maze_list))
