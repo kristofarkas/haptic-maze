@@ -294,59 +294,7 @@ public class MazeGame
             has_key = true;
         }
     }
-
-    // public static int[,,] RandomMaze(int size)
-    // {
-    //     // Generate a maze with all edges filled in
-    //     // Add one more index at the end. This signifies the set for the algorithm
-    //     var Kmaze = new int[size, size, 4, 1];
-    //     var k = new int 0;
-    //     for (int i = 0; i < size;i++)
-    //     {
-    //         for (int j = 0; j < size; j++)
-    //         {
-    //             //Add walls 
-    //             //Iterate k to assign number
-    //             Kmaze[i, j, 0, k] = 1;
-    //             k++;
-    //             Kmaze[i, j, 1, k] = 1;
-    //             k++;
-    //             Kmaze[i, j, 2, k] = 1;
-    //             k++;
-    //             Kmaze[i, j, 3, k] = 1;
-    //             k++;
-    //         }
-    //     }
-    //     //Now implement the algorithm
-    //     // Check two random edges. 
-    //     // If they have different last index, remove the wall
-    //     // And set the index to the same
-    //     Random rnd = new Random();
-    //     // Pick a random number between 1 and size*size. 
-    //     var maze_done = new int 0;
-    //     var cell1 = new int[size, size, 4, 1];
-    //     var cell2 = new int[size, size, 4, 1]; 
-    //     /*while (maze_done ==0)
-    //     {
-    //         int randx = rnd.Next(1, size);
-    //         int randy = rnd.Next(1, size);
-            
-    //         cell1 = maze_done[randx, randy]
-
-    //         // Then pick a random direction; 1-4
-    //         int rand_dir = rnd.Next(1, 4);
-    //         // assign cell2 to be the adjacent one in that direction. 
-
-
-    //         if (Kmaze[randx, randy,rand_dir,0])
-    //     }
-    //     */
-
-
-
-        
-    // }
-
+    
     public static int[,,] Maze2()
     {
         var maze = new int[5, 5, 5];
@@ -438,6 +386,61 @@ public class MazeGame
 
         return maze;
     }
+
+    public void PrintMaze()
+    {
+        for (int i = 0; i < size; i++)
+        {
+            // Iterate for north walls
+            for (int j = 0; j < size; j++)
+            {
+                if (maze[i,j,0]==1)
+                {
+                    Console.WriteLine("-----");
+                }
+            }
+            // Iteratore for east and west walls
+            // Do this five times 
+            // But only add an X when we are in the middle and the victory conditions is set etc
+
+            for(int k = 0; k < 5; k ++)
+            {
+
+                for (int j = 0; j < size; j++)
+                {
+                    /*var maze_pos = new int[] {i,j};
+                    //Add the key 
+                    if (maze[i, j, 3] == 1 && k == 3 && maze[i, j, 4] == 1)
+                    {
+                        Console.WriteLine("|  K  ");
+                    }
+                    //Add the current position
+                    else if (maze[i,j,3])
+                    */
+                    if (maze[i, j, 3] == 1)
+                    {
+                        Console.WriteLine("|     ");
+                    }
+                    else if (maze[i,j,3]==1)
+                    {
+                        Console.WriteLine("      ");
+                    }
+
+                }
+                // Add one more | at the end of it
+                Console.WriteLine("| \n");
+            }
+            // Add the south walls
+            for (int j = 0; j < size; j++)
+            {
+                if (maze[ij, j, 2] == 1)
+                {
+                        Console.WriteLine("-----");
+                }
+            }
+        }
+    }
+    
 
     public void PrintMazeCell()
     {
