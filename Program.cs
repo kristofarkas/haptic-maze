@@ -151,7 +151,6 @@ public class ButtonExample
 */
 
 using System;
-using System.Collections.Generic;
 
 public class MazeGame
 {   
@@ -159,13 +158,13 @@ public class MazeGame
     int[] current_cell;
     int[] current_position;
     int[,,] maze;
+    int[] start_cell;
+    int[] end_cell ;
+
 
     public MazeGame()
     {
-        mazeno = new int 1;
-        is_winner = new bool 0;
-        start_tile = new int[]{ 0,0};
-        end_tile = new int[]{ 0,0};
+        var mazeno = 1;
 
         if (mazeno == 1)
         {
