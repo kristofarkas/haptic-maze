@@ -26,7 +26,7 @@ public class Wall
     //     f = frequency;
     // }
 
-    public Wall(char side, float length=0.08f, float intensity=1.0f, float frequency=200.0f){
+    public Wall(char side, float length=0.09f, float intensity=1.0f, float frequency=200.0f){
         
         this.side = side;
         
@@ -82,6 +82,29 @@ public class Wall
         return points;
     }
 
+    public static List<Wall> GenWalls(int[] cell){
+        Console.WriteLine("Creating cell with walls:");
+        var ws = new List<Wall>();
+        for (int i = 0; i < cell.Length; i++){
+            if (cell[i] == 1) {
+                ws.Add(new Wall(cell_to_side(i)));
+                Console.WriteLine(cell_to_side(i));
+            }
+        }
+        Console.WriteLine(ws.Count);
+        return ws;
+    }
+
+    static char cell_to_side(int i) {
+        switch (i)
+        {
+            case 0: return 'n'; 
+            case 1: return 'e'; 
+            case 2: return 's'; 
+            case 3: return 'w';
+            default: Console.WriteLine("BROKEN!"); return 'n';
+        }
+    }
 }
 
 public class GameLoop
@@ -109,8 +132,6 @@ public class GameLoop
             Console.WriteLine("\n");
         }
 
-        controller.EnableGesture(Gesture.GestureType.TYPE_SWIPE);
-
 
         Console.WriteLine("Leap controller connected.");
 
@@ -120,19 +141,14 @@ public class GameLoop
         Wall w2 = new Wall('e');
         Wall w3 = new Wall('n');
 
-
-        w1.PrintPoints();
-        w2.PrintPoints();
-
         var walls = new List<Wall> {w1, w2, w3};
 
         var recently_moved = false;
 
         for (;;)
         {
-            foreach (var w in walls)
-            {
-            
+            for (int i = 0; i < walls.Count; i++){
+                            
                 Frame frame = controller.Frame();
                 HandList hands = frame.Hands;
 
@@ -146,30 +162,39 @@ public class GameLoop
                     Vector3 palm_pos = alignment.fromTrackingPositionToDevicePosition(pos);
 
                     float max_center = 0.05f;
-                    float far_center = 0.07f;
+                    float far_center = 0.09f;
 
                     if (palm_pos.x > far_center && !recently_moved && Math.Abs(palm_pos.y) < max_center) {
                         Console.WriteLine("Moving right!");
-                        game.MoveTo('e');
+                        var cell = game.MoveTo('e');
+                        walls = Wall.GenWalls(cell);
                         recently_moved = true;
+                        break;
                     }
 
                     if (palm_pos.x < -far_center && !recently_moved && Math.Abs(palm_pos.y) < max_center) {
                         Console.WriteLine("Moving left!");
-                        game.MoveTo('w');
+                        var cell = game.MoveTo('w');
+                        walls = Wall.GenWalls(cell);
                         recently_moved = true;
+                        break;
+
                     }
 
                     if (palm_pos.y < -far_center && !recently_moved && Math.Abs(palm_pos.x) < max_center) {
                         Console.WriteLine("Moving down!");
-                        game.MoveTo('s');
+                        var cell = game.MoveTo('s');
+                        walls = Wall.GenWalls(cell);
                         recently_moved = true;
+                        break;
                     }
 
                     if (palm_pos.y > far_center && !recently_moved && Math.Abs(palm_pos.x) < max_center) {
                         Console.WriteLine("Moving up!");
-                        game.MoveTo('n');
+                        var cell = game.MoveTo('n');
+                        walls = Wall.GenWalls(cell);
                         recently_moved = true;
+                        break;
                     }
 
                     if (Math.Abs(palm_pos.x) < max_center && Math.Abs(palm_pos.y) < max_center && recently_moved) {
@@ -181,7 +206,7 @@ public class GameLoop
                 }
 
                 // Instruct the device to stop any existing actions and start producing this control point
-                bool isOK = emitter.update(w.GetPoints(z));
+                bool isOK = emitter.update(walls[i].GetPoints(z));
 
                 System.Threading.Thread.Sleep(10);
             }
@@ -199,4 +224,6 @@ public class GameLoop
         // emitter.Dispose();
         // emitter = null;
     }
+
 }
+
