@@ -89,15 +89,12 @@ public class Wall
     }
 
     public static List<Wall> GenWalls(int[] cell){
-        Console.WriteLine("Creating cell with walls:");
         var ws = new List<Wall>();
         for (int i = 0; i < cell.Length; i++){
             if (cell[i] == 1) {
                 ws.Add(new Wall(cell_to_side(i)));
-                Console.WriteLine(cell_to_side(i));
             }
         }
-        Console.WriteLine(ws.Count);
         return ws;
     }
 
@@ -209,7 +206,6 @@ public class GameLoop
                     }
 
                     if (palm_normal.z < -0.8f && recently_moved) {
-                        Console.WriteLine("Reset movement");
                         recently_moved = false;
                     }
 
