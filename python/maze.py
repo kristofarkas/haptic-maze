@@ -85,6 +85,7 @@ class Maze(object):
             for x in range(self.width):
                 self.cells.append(Cell(x, y, [N, S, E, W]))
 
+
     def __getitem__(self, index):
         """
         Returns the cell at index = (x, y).
@@ -139,6 +140,9 @@ class Maze(object):
             if E not in cell and x + 1 < self.width:
                 str_matrix[y][x + 1] = ' '
 
+
+
+
         return str_matrix
 
     def __repr__(self):
@@ -161,6 +165,9 @@ class Maze(object):
         # twice as high as they are wide (look at docs example in
         # `Maze._to_str_matrix`).
         skinny_matrix = self._to_str_matrix()
+        print(skinny_matrix)
+
+
 
         # Simply duplicate each character in each line.
         double_wide_matrix = []
@@ -169,6 +176,11 @@ class Maze(object):
             for char in line:
                 double_wide_matrix[-1].append(char)
                 double_wide_matrix[-1].append(char)
+
+        thefile = open('dw_test.txt', 'w')
+
+        for item in double_wide_matrix:
+            thefile.write('%s\n' % item)
 
         # The last two chars of each line are walls, and we will need only one.
         # So we remove the last char of each line.
@@ -236,11 +248,15 @@ class Maze(object):
             else:
                 cell = cell_stack.pop()
 
+
+
     @staticmethod
-    def generate(width=20, height=10):
+    def generate(width=5, height=5):
         """
         Returns a new random perfect maze with the given sizes.
         """
+        print("All is well")
+
         m = Maze(width, height)
         m.randomize()
         return m
@@ -309,8 +325,8 @@ if __name__ == '__main__':
         else:
             height = width
     else:
-        width = 20
-        height = 10
+        width = 5
+        height = 5
 
     import console
     try:

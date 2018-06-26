@@ -4,3 +4,285 @@ Traceback (most recent call last):
   File "maze.py", line 281, in play
     console.display(str(self.maze))
 AttributeError: module 'console' has no attribute 'display'
+Traceback (most recent call last):
+  File "maze.py", line 319, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 278, in play
+    quit()
+  File "C:\Users\Sofia\Anaconda3\lib\_sitebuiltins.py", line 26, in __call__
+    raise SystemExit(code)
+SystemExit: None
+Traceback (most recent call last):
+  File "maze.py", line 320, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 279, in play
+    quit()
+  File "C:\Users\Sofia\Anaconda3\lib\_sitebuiltins.py", line 26, in __call__
+    raise SystemExit(code)
+SystemExit: None
+Traceback (most recent call last):
+  File "maze.py", line 320, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 245, in generate
+    m = Maze(width, height)
+  File "maze.py", line 88, in __init__
+    print(cells)
+NameError: name 'cells' is not defined
+Traceback (most recent call last):
+  File "maze.py", line 320, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 245, in generate
+    m = Maze(width, height)
+  File "maze.py", line 87, in __init__
+    print(cells)
+NameError: name 'cells' is not defined
+Traceback (most recent call last):
+  File "maze.py", line 320, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 245, in generate
+    m = Maze(width, height)
+  File "maze.py", line 87, in __init__
+    print(cells[0])
+NameError: name 'cells' is not defined
+Traceback (most recent call last):
+  File "maze.py", line 321, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 246, in generate
+    m = Maze(width, height)
+  File "maze.py", line 84, in __init__
+    print(cells[0])
+NameError: name 'cells' is not defined
+Traceback (most recent call last):
+  File "maze.py", line 321, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 246, in generate
+    m = Maze(width, height)
+  File "maze.py", line 84, in __init__
+    console.display(cells)
+NameError: name 'cells' is not defined
+Traceback (most recent call last):
+  File "maze.py", line 321, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 246, in generate
+    m = Maze(width, height)
+  File "maze.py", line 84, in __init__
+    console.display(cells)
+NameError: name 'cells' is not defined
+Traceback (most recent call last):
+  File "maze.py", line 321, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 246, in generate
+    m = Maze(width, height)
+  File "maze.py", line 84, in __init__
+    console._display(cells)
+NameError: name 'cells' is not defined
+Traceback (most recent call last):
+  File "maze.py", line 321, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 246, in generate
+    m = Maze(width, height)
+  File "maze.py", line 84, in __init__
+    console._display(cells)
+NameError: name 'console' is not defined
+Traceback (most recent call last):
+  File "maze.py", line 322, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 246, in generate
+    m = Maze(width, height)
+  File "maze.py", line 84, in __init__
+    console._display(cells)
+NameError: name 'console' is not defined
+Traceback (most recent call last):
+  File "maze.py", line 321, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 246, in generate
+    m = Maze(width, height)
+  File "maze.py", line 84, in __init__
+    console._display(cells)
+NameError: name 'cells' is not defined
+Traceback (most recent call last):
+  File "maze.py", line 321, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 246, in generate
+    m = Maze(width, height)
+  File "maze.py", line 84, in __init__
+    console._display(cells)
+NameError: name 'cells' is not defined
+Traceback (most recent call last):
+  File "maze.py", line 321, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 246, in generate
+    m = Maze(width, height)
+  File "maze.py", line 84, in __init__
+    console._display(cells)
+NameError: name 'cells' is not defined
+Traceback (most recent call last):
+  File "maze.py", line 320, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 279, in play
+    quit()
+  File "C:\Users\Sofia\Anaconda3\lib\_sitebuiltins.py", line 26, in __call__
+    raise SystemExit(code)
+SystemExit: None
+Traceback (most recent call last):
+  File "maze.py", line 321, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 280, in play
+    quit()
+  File "C:\Users\Sofia\Anaconda3\lib\_sitebuiltins.py", line 26, in __call__
+    raise SystemExit(code)
+SystemExit: None
+Traceback (most recent call last):
+  File "maze.py", line 321, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 280, in play
+    quit()
+  File "C:\Users\Sofia\Anaconda3\lib\_sitebuiltins.py", line 26, in __call__
+    raise SystemExit(code)
+SystemExit: None
+Traceback (most recent call last):
+  File "maze.py", line 320, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 279, in play
+    quit()
+  File "C:\Users\Sofia\Anaconda3\lib\_sitebuiltins.py", line 26, in __call__
+    raise SystemExit(code)
+SystemExit: None
+Traceback (most recent call last):
+  File "maze.py", line 320, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 279, in play
+    quit()
+  File "C:\Users\Sofia\Anaconda3\lib\_sitebuiltins.py", line 26, in __call__
+    raise SystemExit(code)
+SystemExit: None
+Traceback (most recent call last):
+  File "maze.py", line 320, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 279, in play
+    quit()
+  File "C:\Users\Sofia\Anaconda3\lib\_sitebuiltins.py", line 26, in __call__
+    raise SystemExit(code)
+SystemExit: None
+Traceback (most recent call last):
+  File "maze.py", line 325, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 284, in play
+    quit()
+  File "C:\Users\Sofia\Anaconda3\lib\_sitebuiltins.py", line 26, in __call__
+    raise SystemExit(code)
+SystemExit: None
+Traceback (most recent call last):
+  File "maze.py", line 326, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 284, in play
+    _to_str_matrix.self()
+NameError: name '_to_str_matrix' is not defined
+Traceback (most recent call last):
+  File "maze.py", line 326, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 284, in play
+    self._to_str_matrix()
+AttributeError: 'MazeGame' object has no attribute '_to_str_matrix'
+Traceback (most recent call last):
+  File "maze.py", line 327, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 250, in generate
+    self._to_str_matrix()
+NameError: name 'self' is not defined
+Traceback (most recent call last):
+  File "maze.py", line 327, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 250, in generate
+    self._to_str_matrix()
+AttributeError: 'int' object has no attribute '_to_str_matrix'
+Traceback (most recent call last):
+  File "maze.py", line 329, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 256, in generate
+    m.randomize()
+  File "maze.py", line 245, in randomize
+    self._to_str_matrix()
+  File "maze.py", line 145, in _to_str_matrix
+    print>>thefile, item
+TypeError: unsupported operand type(s) for >>: 'builtin_function_or_method' and '_io.TextIOWrapper'. Did you mean "print(<message>, file=<output_stream>)"?
+Traceback (most recent call last):
+  File "maze.py", line 330, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 289, in play
+    quit()
+  File "C:\Users\Sofia\Anaconda3\lib\_sitebuiltins.py", line 26, in __call__
+    raise SystemExit(code)
+SystemExit: None
+Traceback (most recent call last):
+  File "maze.py", line 330, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 289, in play
+    quit()
+  File "C:\Users\Sofia\Anaconda3\lib\_sitebuiltins.py", line 26, in __call__
+    raise SystemExit(code)
+SystemExit: None
+Traceback (most recent call last):
+  File "maze.py", line 330, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 289, in play
+    quit()
+  File "C:\Users\Sofia\Anaconda3\lib\_sitebuiltins.py", line 26, in __call__
+    raise SystemExit(code)
+SystemExit: None
+Traceback (most recent call last):
+  File "maze.py", line 329, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 293, in play
+    console.display(str(self.maze))
+  File "maze.py", line 170, in __repr__
+    for item in str_matrix:
+NameError: name 'str_matrix' is not defined
+Traceback (most recent call last):
+  File "maze.py", line 329, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 293, in play
+    console.display(str(self.maze))
+  File "maze.py", line 171, in __repr__
+    thefile.write(item)
+TypeError: write() argument must be str, not list
+Traceback (most recent call last):
+  File "maze.py", line 329, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 293, in play
+    console.display(str(self.maze))
+  File "maze.py", line 171, in __repr__
+    print >>thefile, line
+TypeError: unsupported operand type(s) for >>: 'builtin_function_or_method' and '_io.TextIOWrapper'. Did you mean "print(<message>, file=<output_stream>)"?
+Traceback (most recent call last):
+  File "maze.py", line 330, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 294, in play
+    console.display(str(self.maze))
+  File "maze.py", line 172, in __repr__
+    print >>thefile, line
+TypeError: unsupported operand type(s) for >>: 'builtin_function_or_method' and '_io.TextIOWrapper'. Did you mean "print(<message>, file=<output_stream>)"?
+Traceback (most recent call last):
+  File "maze.py", line 330, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 294, in play
+    console.display(str(self.maze))
+  File "maze.py", line 172, in __repr__
+    print >>thefile, line
+TypeError: unsupported operand type(s) for >>: 'builtin_function_or_method' and '_io.TextIOWrapper'. Did you mean "print(<message>, file=<output_stream>)"?
+Traceback (most recent call last):
+  File "maze.py", line 330, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 294, in play
+    console.display(str(self.maze))
+  File "maze.py", line 172, in __repr__
+    print >>thefile, line
+TypeError: unsupported operand type(s) for >>: 'builtin_function_or_method' and '_io.TextIOWrapper'. Did you mean "print(<message>, file=<output_stream>)"?
+Traceback (most recent call last):
+  File "maze.py", line 330, in <module>
+    while MazeGame(Maze.generate(width, height)).play(): pass
+  File "maze.py", line 294, in play
+    console.display(str(self.maze))
+  File "maze.py", line 172, in __repr__
+    print >>thefile, line
+TypeError: unsupported operand type(s) for >>: 'builtin_function_or_method' and '_io.TextIOWrapper'. Did you mean "print(<message>, file=<output_stream>)"?
